@@ -272,15 +272,17 @@ div.empty-state {
 div.photos {
   display: grid;
   margin-top: 2rem;
+  grid-gap: 2vw;
   grid-template-columns: 1fr 1fr 1fr;
 }
   
 div.photo {
-  width: 18rem;
-  height: 18rem;
+  width: 18vw;
+  height: 18vw;
   object-position: 50% 50%;
   object-fit: cover;
   opacity: 0.5;
+  overflow-y: hidden;
   cursor: pointer;
 }
 
@@ -289,5 +291,5 @@ div.photo:hover {
 }
 
 img.photo {
-  width: 18rem;
+  width: 18vw;
 }
