@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="/images/favicon.ico" />
+        <link href="/static/css/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="elm-app-is-loaded-here"></div>
+        <script src="/static/js/elm.min.js"></script>
+        <script>
+            var token = window.localStorage.getItem("token");
+            var app = Elm.Main.init({
+                node: document.getElementById("elm-app-is-loaded-here"),
+                flags: token
+            });
+
+            function adjustTextArea(ta) {
+                ta.style.height = "auto";
+                ta.style.height = ta.scrollHeight+"px";
+            }
+
+            app.ports.resizeTextArea.subscribe(function(textAreaId) {
+                var ta = document.getElementById(textAreaId);
+                adjustTextArea(ta);
+            });
+
+            app.ports.storeToken.subscribe(function(token) {
+                window.localStorage.setItem("token", token);
+                window.location.replace("/app");
+            });
+
+            app.ports.deleteToken.subscribe(function(token) {
+                window.localStorage.removeItem("token");
+                window.location.replace("/app");
+            });
+        </script>
+    </body>
+</html>
+
